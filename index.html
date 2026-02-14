@@ -14,6 +14,7 @@
   <div class="container">
     <h1>Day 90 with love!❤️</h1>
 
+    <!-- ❤️ Letter Panel -->
     <div class="letter">
       Another month with u again and honestly every month with u feels like a blessing. I know I’m not always easy to understand or be with but even with that u’re still here. Thank u so much, baby for loving me and choosing to understand me.
 
@@ -40,20 +41,20 @@
       </div>
       <!-- Progress Dots -->
       <div class="slider-dots"></div>
+
+      <!-- 🎵 MUSIC BUTTON BELOW IMAGES -->
+      <div class="music-button">
+        <button id="music-btn">Play Music 🎶</button>
+        <audio id="love-audio" src="assets/audio/love-song.mp3" loop></audio>
+      </div>
     </div>
 
     <!-- 🎥 VIDEO PANEL -->
     <div class="video-panel">
-      <video controls playsinline loop autoplay muted>
+      <video controls playsinline loop>
         <source src="assets/video/love-video.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
-    </div>
-
-    <!-- 🎵 MUSIC PLAY/PAUSE -->
-    <div class="music-player">
-      <button id="music-btn">Play Music 🎶</button>
-      <audio id="love-audio" src="assets/audio/love-song.mp3" loop></audio>
     </div>
 
     <footer>
@@ -111,7 +112,7 @@
       if (dots[closestIndex]) dots[closestIndex].classList.add('active');
     });
 
-    // Optional: make dots clickable
+    // Make dots clickable
     dots.forEach((dot, idx) => {
       dot.addEventListener('click', () => {
         slides[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
