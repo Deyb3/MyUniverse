@@ -38,6 +38,8 @@
         <img src="assets/images/img11.jpg" alt="Memory 11">
         <img src="assets/images/img12.jpg" alt="Memory 12">
       </div>
+      <!-- Progress Dots -->
+      <div class="slider-dots"></div>
     </div>
 
     <!-- 🎥 VIDEO PANEL -->
@@ -59,8 +61,9 @@
     </footer>
   </div>
 
-  <!-- JS FOR MUSIC -->
+  <!-- JS -->
   <script>
+    // Music button
     const musicBtn = document.getElementById('music-btn');
     const loveAudio = document.getElementById('love-audio');
 
@@ -72,6 +75,47 @@
         loveAudio.pause();
         musicBtn.textContent = "Play Music 🎶";
       }
+    });
+
+    // Slider dots
+    const slidesContainer = document.querySelector('.slides');
+    const slides = document.querySelectorAll('.slides img');
+    const dotsContainer = document.querySelector('.slider-dots');
+
+    // Create dots
+    slides.forEach((_, idx) => {
+      const dot = document.createElement('span');
+      if (idx === 0) dot.classList.add('active');
+      dotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll('.slider-dots span');
+
+    // Update active dot based on center image
+    slidesContainer.addEventListener('scroll', () => {
+      const containerCenter = slidesContainer.scrollLeft + slidesContainer.offsetWidth / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Infinity;
+
+      slides.forEach((slide, idx) => {
+        const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
+        const distance = Math.abs(containerCenter - slideCenter);
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = idx;
+        }
+      });
+
+      dots.forEach(dot => dot.classList.remove('active'));
+      if (dots[closestIndex]) dots[closestIndex].classList.add('active');
+    });
+
+    // Optional: make dots clickable
+    dots.forEach((dot, idx) => {
+      dot.addEventListener('click', () => {
+        slides[idx].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+      });
     });
   </script>
 
